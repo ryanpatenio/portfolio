@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "lib": ["dom", "es6"],
+      "jsx": "react",
+      "moduleResolution": "node",
+      "allowJs": true,
+      "skipLibCheck": true
+    },
+    "include": [
+      "src/**/*"
+    ],
+    "exclude": [
+      "node_modules",
+      "src/**/*.js",
+      "src/setupTests.js",
+      "src/reportWebVitals.js",
+      "src/App.test.js"
+    ]
+  }
+  
