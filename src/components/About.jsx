@@ -12,7 +12,9 @@ export default function About(){
     const skills = [ "PHP", "HTML", "CSS", "JavaScript", "React", "JQuery","Ajax","Mysql"]; 
      
     const firstHalf = skills.slice(0, 4); 
-    const secondHalf = skills.slice(4);   
+    const secondHalf = skills.slice(4); 
+    
+   
 
     return (
        <>

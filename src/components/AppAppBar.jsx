@@ -1,5 +1,3 @@
-
-
 import React, { useRef, useEffect, useState } from 'react';
 import { alpha, styled } from '@mui/material/styles'; //material UI
 import Box from '@mui/material/Box'; //material UI
@@ -43,34 +41,22 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 export default function AppAppBar () {
     const [open, setOpen] = React.useState(false);
 
-    const aboutMeRef = useRef(null); // Reference to the About Me section
-    const [isAboutVisible, setIsAboutVisible] = useState(false); // State to track visibility
-    
     
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
-
-
-useEffect(() => {
-    const observer = new IntersectionObserver(
-        ([entry]) => {
-            setIsAboutVisible(entry.isIntersecting); // Update visibility based on intersection
-        },
-        { threshold: 0.5 } // Trigger when 50% of the section is visible
-    );
-
-    if (aboutMeRef.current) {
-        observer.observe(aboutMeRef.current);
+ 
+const handleScroll = (id, yOffset = -96) => {
+    const section = document.getElementById(id);
+    if (section) {
+        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
     }
 
-    return () => {
-        if (aboutMeRef.current) {
-            observer.unobserve(aboutMeRef.current);
-        }
-    };
-}, []);
+};
+
+
 
   return (
     <AppBar
@@ -82,8 +68,7 @@ useEffect(() => {
       backgroundImage: 'none',
       mt: 'calc(var(--template-frame-height, 0px) + 28px)',
       transition: 'background-color 0.3s ease, box-shadow 0.3s ease',
-      backgroundColor: isAboutVisible ? 'primary.main' : 'transparent', // Change color
-      boxShadow: isAboutVisible ? 4 : 0, // Add shadow when sticky
+
     }}
     >
         <Container maxWidth="lg">
@@ -116,21 +101,23 @@ useEffect(() => {
                 alignItems: 'center',
                 }}
             >
-                    <Button variant="text" color={isAboutVisible ? 'primary' : 'info'} sx={{fontSize:'1.1rem' , mr:2}}>
+                    <Button variant="text" sx={{fontSize:'1.1rem' , mr:2}} onClick={() => handleScroll('home')}>
                         Home
                     </Button>
-                    <Button variant="text" color={isAboutVisible ? 'primary' : 'info'}sx={{fontSize:'1.1rem' ,mr:2}}>
+                    <Button variant="text"sx={{fontSize:'1.1rem' ,mr:2}} onClick={() => handleScroll('about')}>
                         About
                     </Button>
-                    <Button variant="text" color={isAboutVisible ? 'primary' : 'info'} sx={{fontSize:'1.1rem',mr:2}}>
+                    <Button variant="text" sx={{fontSize:'1.1rem',mr:2}} onClick={() => handleScroll('projects',-316)}>
                         Projects
                     </Button>
-                    <Button variant="text" color={isAboutVisible ? 'primary' : 'info'} sx={{fontSize:'1.1rem' ,mr:2}}>
+                    <Button variant="text" sx={{fontSize:'1.1rem' ,mr:2}}onClick={() => handleScroll('footer')}>
                         Contact
                     </Button>
 
                <Tooltip title="Theme" TransitionComponent={Zoom} >
+                <span>
                <ColorModeIconDropdown />
+               </span>
 
                </Tooltip>
                

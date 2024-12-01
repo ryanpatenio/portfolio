@@ -1,6 +1,6 @@
 import React from 'react'
 import Box from '@mui/material/Box'; //material UI
-import { Typography } from '@mui/material';
+
 import Intro from './Intro'
 import About from './About'
 import Projects from './Projects'
@@ -15,21 +15,21 @@ const MainContent = () => {
     <>
 
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-        <div data-aos="fade-right">
-            <Intro />
-        </div>
-        <div data-aos="fade-left">
-            <About/>
-        </div>
-        <div data-aos="zoom-in">
-        <Projects />
+          <div  style={{ minHeight: '100vh' }} data-aos="fade-right" id='home'>
+              <Intro />
+          </div>
+          <div  style={{ minHeight: '100vh' }} data-aos="fade-left" id='about'>
+              <About/>
+          </div>
+          <div  style={{ minHeight: '100vh' }} data-aos="zoom-in" id='projects'>
+          <Projects />
 
-        </div>
+          </div>
 
-        <div data-aos="fade-right">
-          <Footer />
+          <div  data-aos="fade-right" id='footer'>
+            <Footer />
 
-        </div>
+          </div>
 
         
         </Box>
